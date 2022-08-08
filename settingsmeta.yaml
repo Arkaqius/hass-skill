@@ -1,0 +1,16 @@
+skillMetadata:
+   sections:
+      - name: HomeAssistantData
+        fields:
+          - name: host
+            type: text
+            label: Url of HA instance
+            value: "no_address"
+          - name: port
+            type: number
+            label: Port of HAS instance
+            value: 8123
+          - name: token
+            type: password
+            label: Bearer token
+            value: 'invalid'
