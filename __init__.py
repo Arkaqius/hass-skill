@@ -7,7 +7,7 @@ from mycroft.skills.common_iot_skill import (IOT_REQUEST_ID, Action, Attribute,
 from .ha_client import HomeAssistantClient
 from mycroft.util.log import LOG
 import os
-os.sys.path.append('/home/arek/_repos/mycroft-core/skills/hass-skill')
+os.sys.path.append('/opt/mycroft/skills/hass-skill')
 import HMI_Lights
 import HMI_WarmWater
 import HMI_WindowsAndDoors
