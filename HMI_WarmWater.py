@@ -26,7 +26,7 @@ def handle_request(request,HAS_inst):
 
     #Determinate which action shall be run
     #Change WW temperature
-    if(request.action == Action.SET):
+    if(request.action == Action.SET or request.action == Action.ADJUST):
         dlg_result = req_set_WW_temp(request,HAS_inst)
     #Turn on/off WW
     elif(request.action == Action.ON or request.action == Action.OFF):
@@ -47,10 +47,17 @@ def handle_request(request,HAS_inst):
         pass #Response was done before
 
 def req_set_WW_temp(request,HAS_inst):
+    option = None
+    if(request.value == 1):
+        option = 'Economic'
+    if(request.value == 2):
+        option = 'Comfort'
+    if(request.value == 3):
+        option = 'Tube'    
     entity_id = HAS_inst.WW_set_temp_entity[0]['entity_id']
-    HAS_inst.HA.execute_service('number',
-                                'set_value',{   'entity_id' : f'{entity_id}',
-                                                'value' : request.value})
+    HAS_inst.HA.execute_service('input_select',
+                                'select_option',{   'entity_id' : f'{entity_id}',
+                                                    'value' : f'{option}'})
     return HMI_dlg_rtn.SUCCESS
 
 def req_turn_onoff_WW(request,HAS_inst):

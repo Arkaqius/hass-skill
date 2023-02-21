@@ -5,7 +5,7 @@ skillMetadata:
           - name: host
             type: text
             label: Url of HA instance
-            value: 'kojbito.duckdns.org
+            value: 'kojbito.duckdns.org'
           - name: port
             type: number
             label: Port of HAS instance
