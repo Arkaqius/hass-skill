@@ -18,7 +18,7 @@ Requirements:
 HASS preparing:
 - WW water temperature
 - WW water enable/disable
-- WW water set temperature
+- WW water set temperature - input_selection
 '''
 
 def handle_request(request,HAS_inst):
@@ -49,15 +49,17 @@ def handle_request(request,HAS_inst):
 def req_set_WW_temp(request,HAS_inst):
     option = None
     if(request.value == 1):
-        option = 'Economic'
+        option = '40C - Economic'
     if(request.value == 2):
-        option = 'Comfort'
+        option = '45C - Comfort'
     if(request.value == 3):
-        option = 'Tube'    
+        option = '50C -Tube'    
     entity_id = HAS_inst.WW_set_temp_entity[0]['entity_id']
     HAS_inst.HA.execute_service('input_select',
-                                'select_option',{   'entity_id' : f'{entity_id}',
-                                                    'value' : f'{option}'})
+                                'select_option',{
+                                                    "entity_id": "input_select.warm_water_preset",
+                                                    "option": "50C -Tube"
+                                                })
     return HMI_dlg_rtn.SUCCESS
 
 def req_turn_onoff_WW(request,HAS_inst):
